@@ -16,7 +16,7 @@ public class UsrUtilisateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "createur")
     private List<PrProjet> projets;
 
     public Long getId() {

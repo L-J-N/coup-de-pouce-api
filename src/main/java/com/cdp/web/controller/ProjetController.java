@@ -1,14 +1,13 @@
 package com.cdp.web.controller;
 
 import com.cdp.data.entity.projet.PrProjet;
-import com.cdp.data.repository.PrProjetRepository;
+import com.cdp.service.projet.ProjetService;
 import com.cdp.web.converter.ProjetConverter;
 import com.cdp.web.dto.ProjetDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,19 +15,21 @@ import java.util.List;
  */
 
 @RestController
+@RequestMapping(value="/projets")
 public class ProjetController {
 
-    @Autowired
-    private PrProjetRepository projetRepository;
 
     @Autowired
     private ProjetConverter projetConverter;
 
-    @RequestMapping(value="/projets", method= RequestMethod.GET)
-    public List<ProjetDto> projets() {
+    @Autowired
+    private ProjetService projetService;
 
-        List<ProjetDto> projetsDto = null;
-        List<PrProjet> projets = projetRepository.findAll();
+    @RequestMapping(method= RequestMethod.GET)
+    public List<ProjetDto> getByStatut(@RequestParam(value="statut") String statut) {
+
+        List<ProjetDto> projetsDto = new ArrayList<>();
+        List<PrProjet> projets = projetService.getByStatut(statut);
 
         if (!projets.isEmpty()) {
 
@@ -40,10 +41,10 @@ public class ProjetController {
         return projetsDto;
     }
 
-/*    @RequestMapping(value="/projets", method= RequestMethod.GET)
-    public ProjetDto projet(@RequestParam(value="id") Long id) {
+    @RequestMapping(value="/{id}", method= RequestMethod.GET)
+    public ProjetDto getById(@PathVariable("id") Long id) {
 
-        PrProjet projet = projetRepository.findOne(id);
+        PrProjet projet = projetService.getById(id);
         ProjetDto projetDto = null;
 
         if (projet != null) {
@@ -51,5 +52,12 @@ public class ProjetController {
         }
 
         return projetDto;
-    }*/
+    }
+
+    @RequestMapping(method= RequestMethod.POST)
+    public void create(@RequestBody ProjetDto input) {
+
+        PrProjet projet = projetConverter.toEntity(input);
+    }
+
 }
