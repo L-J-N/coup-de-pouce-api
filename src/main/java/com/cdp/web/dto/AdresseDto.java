@@ -1,10 +1,15 @@
 package com.cdp.web.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Created by jabuf on 22/02/17.
  */
+@ApiModel(value = "Adresse")
 public class AdresseDto {
 
+    @ApiModelProperty(name = "id", value = "Identifiant de l'adresse (unique)", required = true)
     private Long id;
 
     private Integer numero;

@@ -2,8 +2,9 @@ package com.cdp.service.projet;
 
 import com.cdp.data.entity.projet.PrProjet;
 import com.cdp.data.entity.projet.PrStatutProjet;
-import com.cdp.data.repository.PrProjetRepository;
-import com.cdp.data.repository.PrStatutProjetRepository;
+import com.cdp.data.repository.AdresseRepository;
+import com.cdp.data.repository.projet.PrProjetRepository;
+import com.cdp.data.repository.projet.PrStatutProjetRepository;
 import com.cdp.enumeration.StatutProjetEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ import java.util.List;
 public class ProjetService {
 
     @Autowired
+    private AdresseRepository adresseRepository;
+
+    @Autowired
     private PrProjetRepository projetRepository;
 
     @Autowired
@@ -26,6 +30,15 @@ public class ProjetService {
     public PrProjet getById(Long id) {
 
         return projetRepository.findOne(id);
+    }
+
+    public void save(PrProjet projet) {
+
+        if (projet.getAdresse() != null) {
+            adresseRepository.save(projet.getAdresse());
+        }
+
+        projetRepository.save(projet);
     }
 
     public PrStatutProjet getCurrentStatut(PrProjet projet) {

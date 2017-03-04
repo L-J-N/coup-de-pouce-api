@@ -23,4 +23,8 @@ public class AdresseConverter {
 
         return adresseDto;
     }
+
+    public Adresse toEntity(AdresseDto adresse) {
+        return new Adresse();
+    }
 }

@@ -1,4 +1,4 @@
-package com.cdp.data.repository;
+package com.cdp.data.repository.projet;
 
 import com.cdp.data.entity.projet.PrStatutProjet;
 import com.cdp.enumeration.StatutProjetEnum;

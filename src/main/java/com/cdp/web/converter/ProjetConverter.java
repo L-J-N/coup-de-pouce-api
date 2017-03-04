@@ -44,6 +44,23 @@ public class ProjetConverter {
     }
 
     public PrProjet toEntity(final ProjetDto projetDto) {
+
+        PrProjet projet = new PrProjet();
+
+        if (projetDto != null) {
+
+            projet.setNom(projetDto.getNom());
+            projet.setCreateur(utilisateurConverter.toEntity(projetDto.getCreateur()));
+            projet.setTypeProjet(projetDto.getTypeProjet());
+            projet.setDescriptionCourte(projetDto.getDescriptionCourte());
+            projet.setSommeDemandee(projetDto.getSommeDemandee());
+            projet.setSommeRecolte(projetDto.getSommeRecolte());
+            projet.setDelaiRecolte(projetDto.getDelaiRecolte());
+            projet.setAdresse(adresseConverter.toEntity(projetDto.getAdresse()));
+
+            projetService.save(projet);
+        }
+
         return new PrProjet();
     }
 }

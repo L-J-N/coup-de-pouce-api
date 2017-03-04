@@ -2,7 +2,9 @@ package com.cdp.web.converter;
 
 
 import com.cdp.data.entity.utilisateur.UsrUtilisateur;
+import com.cdp.service.utilisateur.UtilisateurService;
 import com.cdp.web.dto.UtilisateurDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,6 +12,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UtilisateurConverter {
+
+    @Autowired
+    UtilisateurService utilisateurService;
 
     public UtilisateurDto toDto(final UsrUtilisateur utilisateur) {
 
@@ -22,5 +27,18 @@ public class UtilisateurConverter {
         }
 
         return utilisateurDto;
+    }
+
+    public UsrUtilisateur toEntity(UtilisateurDto utilisateurDto) {
+
+        UsrUtilisateur utilisateur = new UsrUtilisateur();
+
+        if (utilisateurDto.getId() != null) {
+            utilisateur = utilisateurService.getById(utilisateurDto.getId());
+        } else {
+            //TODO
+        }
+
+        return utilisateur;
     }
 }

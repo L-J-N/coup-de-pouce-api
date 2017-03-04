@@ -4,7 +4,11 @@ import com.cdp.data.entity.projet.PrProjet;
 import com.cdp.service.projet.ProjetService;
 import com.cdp.web.converter.ProjetConverter;
 import com.cdp.web.dto.ProjetDto;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -15,6 +19,7 @@ import java.util.List;
  */
 
 @RestController
+@Api(value = "/projets", description = "Service REST pour l'entité Projet")
 @RequestMapping(value="/projets")
 public class ProjetController {
 
@@ -26,6 +31,7 @@ public class ProjetController {
     private ProjetService projetService;
 
     @RequestMapping(method= RequestMethod.GET)
+    @ApiOperation(value = "Renvoie la liste des projets correspondants au statut passé en paramétre", response = ProjetDto.class)
     public List<ProjetDto> getByStatut(@RequestParam(value="statut") String statut) {
 
         List<ProjetDto> projetsDto = new ArrayList<>();
@@ -42,6 +48,7 @@ public class ProjetController {
     }
 
     @RequestMapping(value="/{id}", method= RequestMethod.GET)
+    @ApiOperation(value = "Renvoie le projet correspondant à l'identifiant passé en paramétre", response = ProjetDto.class)
     public ProjetDto getById(@PathVariable("id") Long id) {
 
         PrProjet projet = projetService.getById(id);
@@ -54,10 +61,14 @@ public class ProjetController {
         return projetDto;
     }
 
-    @RequestMapping(method= RequestMethod.POST)
-    public void create(@RequestBody ProjetDto input) {
+    @RequestMapping(method= RequestMethod.POST, consumes = { "application/json" })
+    @ApiOperation(value = "Créé le projet passé en paramétre")
+    @ResponseBody
+    public ResponseEntity create(@RequestBody ProjetDto input) {
 
         PrProjet projet = projetConverter.toEntity(input);
+
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
 }
