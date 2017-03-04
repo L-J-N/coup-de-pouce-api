@@ -31,12 +31,13 @@ public class UtilisateurConverter {
 
     public UsrUtilisateur toEntity(UtilisateurDto utilisateurDto) {
 
-        UsrUtilisateur utilisateur = new UsrUtilisateur();
+        UsrUtilisateur utilisateur = null;
 
-        if (utilisateurDto.getId() != null) {
-            utilisateur = utilisateurService.getById(utilisateurDto.getId());
-        } else {
-            //TODO
+        if (utilisateurDto != null) {
+
+            utilisateur = new UsrUtilisateur();
+
+            utilisateur.setId(utilisateurDto.getId());
         }
 
         return utilisateur;

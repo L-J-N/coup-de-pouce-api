@@ -45,10 +45,13 @@ public class ProjetConverter {
 
     public PrProjet toEntity(final ProjetDto projetDto) {
 
-        PrProjet projet = new PrProjet();
+        PrProjet projet = null;
 
         if (projetDto != null) {
 
+            projet = new PrProjet();
+
+            projet.setId(projetDto.getId());
             projet.setNom(projetDto.getNom());
             projet.setCreateur(utilisateurConverter.toEntity(projetDto.getCreateur()));
             projet.setTypeProjet(projetDto.getTypeProjet());
@@ -57,10 +60,8 @@ public class ProjetConverter {
             projet.setSommeRecolte(projetDto.getSommeRecolte());
             projet.setDelaiRecolte(projetDto.getDelaiRecolte());
             projet.setAdresse(adresseConverter.toEntity(projetDto.getAdresse()));
-
-            projetService.save(projet);
         }
 
-        return new PrProjet();
+        return projet;
     }
 }

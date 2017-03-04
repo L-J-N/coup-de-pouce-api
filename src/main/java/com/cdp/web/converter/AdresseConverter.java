@@ -24,7 +24,24 @@ public class AdresseConverter {
         return adresseDto;
     }
 
-    public Adresse toEntity(AdresseDto adresse) {
-        return new Adresse();
+    public Adresse toEntity(AdresseDto adresseDto) {
+
+        Adresse adresse = null;
+
+        if (adresseDto != null) {
+
+            adresse = new Adresse();
+
+            adresse.setId(adresseDto.getId());
+            adresse.setCodePostal(adresseDto.getCodePostal());
+            adresse.setVille(adresseDto.getPays());
+            adresse.setVoie(adresseDto.getVoie());
+            adresse.setNumero(adresseDto.getNumero());
+            adresse.setComplement1(adresseDto.getComplement1());
+            adresse.setComplement2(adresseDto.getComplement2());
+            adresse.setPays(adresseDto.getPays());
+        }
+
+        return adresse;
     }
 }

@@ -19,8 +19,8 @@ import java.util.List;
  */
 
 @RestController
-@Api(value = "/projets", description = "Service REST pour l'entité Projet")
-@RequestMapping(value="/projets")
+@Api(value = "/projets/v1", description = "Service REST pour l'entité Projet")
+@RequestMapping(value="/projets/v1")
 public class ProjetController {
 
 
@@ -67,8 +67,15 @@ public class ProjetController {
     public ResponseEntity create(@RequestBody ProjetDto input) {
 
         PrProjet projet = projetConverter.toEntity(input);
+        projetService.save(projet);
 
-        return new ResponseEntity(HttpStatus.CREATED);
+        if (projet != null) {
+            return new ResponseEntity(HttpStatus.CREATED);
+        } else {
+            //TODO
+            return new ResponseEntity(HttpStatus.CREATED);
+        }
+
     }
 
 }

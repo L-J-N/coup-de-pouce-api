@@ -27,6 +27,9 @@ public class ProjetService {
     @Autowired
     private PrStatutProjetRepository statutProjetRepository;
 
+    @Autowired
+    private StatutProjetService statutProjetService;
+
     public PrProjet getById(Long id) {
 
         return projetRepository.findOne(id);
@@ -39,6 +42,8 @@ public class ProjetService {
         }
 
         projetRepository.save(projet);
+
+        statutProjetService.init(projet);
     }
 
     public PrStatutProjet getCurrentStatut(PrProjet projet) {
