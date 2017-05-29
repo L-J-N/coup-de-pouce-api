@@ -66,6 +66,23 @@ public class ProjetController {
         return projetDto;
     }
 
+    @RequestMapping(value="/vignette", method= RequestMethod.GET)
+    @ApiOperation(value = "Renvoie la liste des vignettes des projets correspondants au statut passé en paramétre", response = ProjetVignetteDto.class)
+    public List<ProjetVignetteDto> getVignettesByStatut(@RequestParam(value="statut") String statut) {
+
+        List<ProjetVignetteDto> projetVignettesDto = new ArrayList<>();
+        List<PrProjet> projets = projetService.getByStatut(statut);
+
+        if (!projets.isEmpty()) {
+
+            for (PrProjet projet : projets) {
+                projetVignettesDto.add(projetVignetteConverter.toDto(projet));
+            }
+        }
+
+        return projetVignettesDto;
+    }
+
     @RequestMapping(value="/vignette/{id}", method= RequestMethod.GET)
     @ApiOperation(value = "Renvoie la vignette du projet correspondant à l'identifiant passé en paramétre", response = ProjetVignetteDto.class)
     public ProjetVignetteDto getVignetteById(@PathVariable("id") Long id) {
