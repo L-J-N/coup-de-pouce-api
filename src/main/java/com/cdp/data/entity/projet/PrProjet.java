@@ -47,6 +47,9 @@ public class PrProjet {
     @OneToOne
     private Adresse adresse;
 
+    @OneToOne(mappedBy = "projet")
+    private PrPublication publication;
+
     public Long getId() {
         return id;
     }
@@ -133,5 +136,13 @@ public class PrProjet {
 
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
+    }
+
+    public PrPublication getPublication() {
+        return publication;
+    }
+
+    public void setPublication(PrPublication publication) {
+        this.publication = publication;
     }
 }

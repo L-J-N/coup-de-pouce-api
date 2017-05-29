@@ -3,7 +3,9 @@ package com.cdp.web.controller;
 import com.cdp.data.entity.projet.PrProjet;
 import com.cdp.service.projet.ProjetService;
 import com.cdp.web.converter.ProjetConverter;
+import com.cdp.web.converter.ProjetVignetteConverter;
 import com.cdp.web.dto.ProjetDto;
+import com.cdp.web.dto.ProjetVignetteDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class ProjetController {
 
     @Autowired
     private ProjetConverter projetConverter;
+
+    @Autowired
+    private ProjetVignetteConverter projetVignetteConverter;
 
     @Autowired
     private ProjetService projetService;
@@ -59,6 +64,20 @@ public class ProjetController {
         }
 
         return projetDto;
+    }
+
+    @RequestMapping(value="/vignette/{id}", method= RequestMethod.GET)
+    @ApiOperation(value = "Renvoie la vignette du projet correspondant à l'identifiant passé en paramétre", response = ProjetVignetteDto.class)
+    public ProjetVignetteDto getVignetteById(@PathVariable("id") Long id) {
+
+        PrProjet projet = projetService.getById(id);
+        ProjetVignetteDto projetVignetteDto = null;
+
+        if (projet != null) {
+            projetVignetteDto = projetVignetteConverter.toDto(projet);
+        }
+
+        return projetVignetteDto;
     }
 
     @RequestMapping(method= RequestMethod.POST, consumes = { "application/json" })
