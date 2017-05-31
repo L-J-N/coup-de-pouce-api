@@ -25,7 +25,7 @@ public class StatutProjetService {
 
     void init(PrProjet projet) {
 
-        if (projet.getStatuts().isEmpty()) {
+        if (projet.getStatuts() == null || projet.getStatuts().isEmpty()) {
 
             PrStatutProjet statutProjet = new PrStatutProjet();
             statutProjet.setDateDebut(new Date());
