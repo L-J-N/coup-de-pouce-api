@@ -1,4 +1,4 @@
-package com.cdp.web.dto;
+package com.cdp.web.dto.utilisateur;
 
 /**
  * Created by jabuf on 22/02/17.

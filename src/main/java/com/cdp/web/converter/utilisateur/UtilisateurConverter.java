@@ -1,9 +1,9 @@
-package com.cdp.web.converter;
+package com.cdp.web.converter.utilisateur;
 
 
 import com.cdp.data.entity.utilisateur.UsrUtilisateur;
 import com.cdp.service.utilisateur.UtilisateurService;
-import com.cdp.web.dto.UtilisateurDto;
+import com.cdp.web.dto.utilisateur.UtilisateurDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

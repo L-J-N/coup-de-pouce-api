@@ -1,4 +1,4 @@
-package com.cdp.web.converter;
+package com.cdp.web.converter.projet;
 
 
 import com.cdp.data.entity.projet.PrProjet;
@@ -6,7 +6,7 @@ import com.cdp.data.entity.projet.PrPublication;
 import com.cdp.data.entity.projet.PrStatutProjet;
 import com.cdp.service.projet.ProjetService;
 import com.cdp.service.projet.PublicationService;
-import com.cdp.web.dto.ProjetVignetteDto;
+import com.cdp.web.dto.projet.ProjetVignetteDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

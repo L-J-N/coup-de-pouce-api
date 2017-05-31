@@ -1,7 +1,9 @@
-package com.cdp.web.dto;
+package com.cdp.web.dto.projet;
 
 import com.cdp.data.entity.projet.PrStatutProjet;
 import com.cdp.enumeration.TypeProjetEnum;
+import com.cdp.web.dto.AdresseDto;
+import com.cdp.web.dto.utilisateur.UtilisateurDto;
 
 import java.util.List;
 

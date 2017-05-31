@@ -1,11 +1,11 @@
-package com.cdp.web.controller;
+package com.cdp.web.controller.projet;
 
 import com.cdp.data.entity.projet.PrProjet;
 import com.cdp.service.projet.ProjetService;
-import com.cdp.web.converter.ProjetConverter;
-import com.cdp.web.converter.ProjetVignetteConverter;
-import com.cdp.web.dto.ProjetDto;
-import com.cdp.web.dto.ProjetVignetteDto;
+import com.cdp.web.converter.projet.ProjetConverter;
+import com.cdp.web.converter.projet.ProjetVignetteConverter;
+import com.cdp.web.dto.projet.ProjetDto;
+import com.cdp.web.dto.projet.ProjetVignetteDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

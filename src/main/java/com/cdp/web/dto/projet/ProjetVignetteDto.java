@@ -1,4 +1,4 @@
-package com.cdp.web.dto;
+package com.cdp.web.dto.projet;
 
 import com.cdp.enumeration.StatutProjetEnum;
 

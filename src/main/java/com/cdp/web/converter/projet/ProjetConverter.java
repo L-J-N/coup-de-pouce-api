@@ -1,8 +1,10 @@
-package com.cdp.web.converter;
+package com.cdp.web.converter.projet;
 
 import com.cdp.data.entity.projet.PrProjet;
 import com.cdp.service.projet.ProjetService;
-import com.cdp.web.dto.ProjetDto;
+import com.cdp.web.converter.AdresseConverter;
+import com.cdp.web.converter.utilisateur.UtilisateurConverter;
+import com.cdp.web.dto.projet.ProjetDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
