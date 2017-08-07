@@ -6,6 +6,7 @@ import com.cdp.data.repository.AdresseRepository;
 import com.cdp.data.repository.projet.PrProjetRepository;
 import com.cdp.data.repository.projet.PrStatutProjetRepository;
 import com.cdp.enumeration.StatutProjetEnum;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,9 +60,16 @@ public class ProjetService {
         return statut;
     }
 
-    public List<PrProjet> getByStatut(String statut) {
+    public List<PrProjet> getList(String statut) {
 
-        List<PrStatutProjet> statutProjets = statutProjetRepository.findByStatutProjetAndDateFinIsNull(StatutProjetEnum.toEnum(statut));
+        List<PrStatutProjet> statutProjets;
+
+        if (!StringUtils.isEmpty(statut)) {
+            statutProjets = statutProjetRepository.findByStatutProjetAndDateFinIsNull(StatutProjetEnum.toEnum(statut));
+        } else {
+            statutProjets = statutProjetRepository.findTop50ByNomAsc();
+        }
+
         List<PrProjet> projets = new ArrayList<>();
 
         if (!statutProjets.isEmpty()) {

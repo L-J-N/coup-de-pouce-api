@@ -13,4 +13,6 @@ public interface PrStatutProjetRepository extends JpaRepository<PrStatutProjet, 
 
     List<PrStatutProjet> findByStatutProjetAndDateFinIsNull(StatutProjetEnum statut);
 
+    List<PrStatutProjet> findTop50ByNomAsc();
+
 }

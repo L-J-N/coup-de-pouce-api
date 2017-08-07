@@ -37,10 +37,10 @@ public class ProjetController {
 
     @RequestMapping(method= RequestMethod.GET)
     @ApiOperation(value = "Renvoie la liste des projets correspondants au statut passé en paramétre", response = ProjetDto.class)
-    public List<ProjetDto> getByStatut(@RequestParam(value="statut") String statut) {
+    public List<ProjetDto> getList(@RequestParam(value="statut") String statut) {
 
         List<ProjetDto> projetsDto = new ArrayList<>();
-        List<PrProjet> projets = projetService.getByStatut(statut);
+        List<PrProjet> projets = projetService.getList(statut);
 
         if (!projets.isEmpty()) {
 
@@ -71,7 +71,7 @@ public class ProjetController {
     public List<ProjetVignetteDto> getVignettesByStatut(@RequestParam(value="statut") String statut) {
 
         List<ProjetVignetteDto> projetVignettesDto = new ArrayList<>();
-        List<PrProjet> projets = projetService.getByStatut(statut);
+        List<PrProjet> projets = projetService.getList(statut);
 
         if (!projets.isEmpty()) {
 
