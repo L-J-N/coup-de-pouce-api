@@ -67,7 +67,7 @@ public class ProjetService {
         if (!StringUtils.isEmpty(statut)) {
             statutProjets = statutProjetRepository.findByStatutProjetAndDateFinIsNull(StatutProjetEnum.toEnum(statut));
         } else {
-            statutProjets = statutProjetRepository.findTop50ByNomAsc();
+            statutProjets = statutProjetRepository.findAllTop50ByNomAsc();
         }
 
         List<PrProjet> projets = new ArrayList<>();
