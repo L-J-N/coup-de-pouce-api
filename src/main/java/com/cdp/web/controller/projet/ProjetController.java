@@ -37,7 +37,7 @@ public class ProjetController {
 
     @RequestMapping(method= RequestMethod.GET)
     @ApiOperation(value = "Renvoie la liste des projets correspondants au statut passé en paramétre", response = ProjetDto.class)
-    public List<ProjetDto> getList(@RequestParam(value="statut") String statut) {
+    public List<ProjetDto> getList(@RequestParam(value="statut", required = false) String statut) {
 
         List<ProjetDto> projetsDto = new ArrayList<>();
         List<PrProjet> projets = projetService.getList(statut);
