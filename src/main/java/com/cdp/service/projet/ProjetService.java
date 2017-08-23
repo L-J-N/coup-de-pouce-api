@@ -44,7 +44,10 @@ public class ProjetService {
 
         projetRepository.save(projet);
 
-        statutProjetService.init(projet);
+        if (projet.getStatuts().isEmpty()) {
+            //Si le projet n'a pas de statut, on lui en crée un
+            statutProjetService.init(projet);
+        }
     }
 
     public PrStatutProjet getCurrentStatut(PrProjet projet) {
@@ -80,6 +83,5 @@ public class ProjetService {
 
         return projets;
     }
-
 
 }
