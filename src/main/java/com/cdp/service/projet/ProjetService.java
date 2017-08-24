@@ -9,6 +9,7 @@ import com.cdp.enumeration.StatutProjetEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class ProjetService {
 
         projetRepository.save(projet);
 
-        if (projet.getStatuts().isEmpty()) {
+        if (CollectionUtils.isEmpty(projet.getStatuts())) {
             //Si le projet n'a pas de statut, on lui en crée un
             statutProjetService.init(projet);
         }
