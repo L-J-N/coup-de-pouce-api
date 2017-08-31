@@ -24,6 +24,8 @@ public class UtilisateurConverter {
 
             utilisateurDto = new UtilisateurDto();
             utilisateurDto.setId(utilisateur.getId());
+            utilisateurDto.setNom(utilisateur.getNom());
+            utilisateurDto.setPrenom(utilisateur.getPrenom());
         }
 
         return utilisateurDto;
@@ -38,6 +40,8 @@ public class UtilisateurConverter {
             utilisateur = new UsrUtilisateur();
 
             utilisateur.setId(utilisateurDto.getId());
+            utilisateur.setNom(utilisateurDto.getNom());
+            utilisateur.setPrenom(utilisateurDto.getPrenom());
         }
 
         return utilisateur;
