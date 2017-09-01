@@ -85,4 +85,10 @@ public class ProjetService {
         return projets;
     }
 
+    public void updateSomme(PrProjet projet, int somme) {
+
+        projet.setSommeRecolte(projet.getSommeRecolte() + somme);
+        projetRepository.save(projet);
+    }
+
 }

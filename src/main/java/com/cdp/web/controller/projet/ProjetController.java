@@ -136,16 +136,24 @@ public class ProjetController {
     }
 
     @RequestMapping(method= RequestMethod.PATCH, consumes = { "application/json" })
-    @ApiOperation(value = "Met à jour le statut d'un projet")
+    @ApiOperation(value = "Met à jour différents attributs d'un projet")
     @ResponseBody
-    public ResponseEntity updateStatut(@RequestParam(value="idProjet") Long idProjet,
-                                        @RequestParam(value="statut") String statut) {
+    public ResponseEntity updateProjet(@RequestParam(value="idProjet") Long idProjet,
+                                        @RequestParam(value="statut") String statut,
+                                       @RequestParam(value="somme") Integer somme) {
 
         PrProjet projet = projetService.getById(idProjet);
 
         if (projet != null) {
 
-            statutProjetService.updateStatut(projet, statut);
+            if (statut != null) {
+                statutProjetService.updateStatut(projet, statut);
+            }
+
+            if (somme != null) {
+                projetService.updateSomme(projet, somme);
+            }
+
             return new ResponseEntity(HttpStatus.OK);
         } else {
             //TODO
