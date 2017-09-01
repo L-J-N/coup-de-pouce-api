@@ -139,8 +139,8 @@ public class ProjetController {
     @ApiOperation(value = "Met à jour différents attributs d'un projet")
     @ResponseBody
     public ResponseEntity updateProjet(@RequestParam(value="idProjet") Long idProjet,
-                                        @RequestParam(value="statut") String statut,
-                                       @RequestParam(value="somme") Integer somme) {
+                                        @RequestParam(value="statut", required = false) String statut,
+                                       @RequestParam(value="somme", required = false) Integer somme) {
 
         PrProjet projet = projetService.getById(idProjet);
 
