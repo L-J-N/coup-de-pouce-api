@@ -2,6 +2,7 @@ package com.cdp.web.controller.projet;
 
 import com.cdp.data.entity.projet.PrProjet;
 import com.cdp.service.projet.ProjetService;
+import com.cdp.service.projet.StatutProjetService;
 import com.cdp.web.converter.projet.ProjetConverter;
 import com.cdp.web.converter.projet.ProjetVignetteConverter;
 import com.cdp.web.dto.projet.ProjetDto;
@@ -35,12 +36,15 @@ public class ProjetController {
     @Autowired
     private ProjetService projetService;
 
+    @Autowired
+    private StatutProjetService statutProjetService;
+
     @RequestMapping(method= RequestMethod.GET)
     @ApiOperation(value = "Renvoie la liste des projets correspondants au statut passé en paramétre", response = ProjetDto.class)
-    public List<ProjetDto> getByStatut(@RequestParam(value="statut") String statut) {
+    public List<ProjetDto> getList(@RequestParam(value="statut", required = false) String statut) {
 
         List<ProjetDto> projetsDto = new ArrayList<>();
-        List<PrProjet> projets = projetService.getByStatut(statut);
+        List<PrProjet> projets = projetService.getList(statut);
 
         if (!projets.isEmpty()) {
 
@@ -71,7 +75,7 @@ public class ProjetController {
     public List<ProjetVignetteDto> getVignettesByStatut(@RequestParam(value="statut") String statut) {
 
         List<ProjetVignetteDto> projetVignettesDto = new ArrayList<>();
-        List<PrProjet> projets = projetService.getByStatut(statut);
+        List<PrProjet> projets = projetService.getList(statut);
 
         if (!projets.isEmpty()) {
 
@@ -111,7 +115,50 @@ public class ProjetController {
             //TODO
             return new ResponseEntity(HttpStatus.CREATED);
         }
+    }
 
+    @RequestMapping(method= RequestMethod.PUT, consumes = { "application/json" })
+    @ApiOperation(value = "Met à jour un projet")
+    @ResponseBody
+    public ProjetDto update(@RequestBody ProjetDto input) {
+
+        PrProjet projet = projetConverter.toEntity(input);
+        projetService.save(projet);
+        ProjetDto projetDto = projetConverter.toDto(projet);
+
+
+        if (projetDto != null) {
+            return projetDto;
+        } else {
+            //TODO
+            return input;
+        }
+    }
+
+    @RequestMapping(method= RequestMethod.PATCH, consumes = { "application/json" })
+    @ApiOperation(value = "Met à jour différents attributs d'un projet")
+    @ResponseBody
+    public ResponseEntity updateProjet(@RequestParam(value="idProjet") Long idProjet,
+                                        @RequestParam(value="statut", required = false) String statut,
+                                       @RequestParam(value="somme", required = false) Integer somme) {
+
+        PrProjet projet = projetService.getById(idProjet);
+
+        if (projet != null) {
+
+            if (statut != null) {
+                statutProjetService.updateStatut(projet, statut);
+            }
+
+            if (somme != null) {
+                projetService.updateSomme(projet, somme);
+            }
+
+            return new ResponseEntity(HttpStatus.OK);
+        } else {
+            //TODO
+            return new ResponseEntity(HttpStatus.NOT_MODIFIED);
+        }
     }
 
 }

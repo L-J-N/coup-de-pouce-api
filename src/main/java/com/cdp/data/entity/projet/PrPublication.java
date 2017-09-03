@@ -17,6 +17,7 @@ public class PrPublication {
     @OneToOne
     private PrProjet projet;
 
+    @Column(columnDefinition="TEXT")
     private String descriptionLongue;
 
     private String imageAffichage;

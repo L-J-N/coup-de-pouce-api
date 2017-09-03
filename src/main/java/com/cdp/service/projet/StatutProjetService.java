@@ -2,15 +2,11 @@ package com.cdp.service.projet;
 
 import com.cdp.data.entity.projet.PrProjet;
 import com.cdp.data.entity.projet.PrStatutProjet;
-import com.cdp.data.repository.AdresseRepository;
-import com.cdp.data.repository.projet.PrProjetRepository;
 import com.cdp.data.repository.projet.PrStatutProjetRepository;
 import com.cdp.enumeration.StatutProjetEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +19,13 @@ public class StatutProjetService {
     @Autowired
     private PrStatutProjetRepository statutProjetRepository;
 
+    @Autowired
+    private PublicationService publicationService;
+
+    /**
+     * Initialise le statut d'un projet
+     * @param projet le projet à mettre à jour
+     */
     void init(PrProjet projet) {
 
         if (projet.getStatuts() == null || projet.getStatuts().isEmpty()) {
@@ -34,6 +37,35 @@ public class StatutProjetService {
 
             statutProjetRepository.save(statutProjet);
         }
+    }
+
+    /**
+     * Met à jour le statut d'un projet
+     * @param projet le projet à mettre à jour
+     * @param statut le statut actif
+     */
+    public void updateStatut(PrProjet projet, String statut) {
+
+        List<PrStatutProjet> statuts = statutProjetRepository.findByProjet(projet);
+
+        //On archive l'ancien statut actif
+        for (PrStatutProjet itStatut : statuts) {
+
+            if (itStatut.getDateFin() == null) {
+                itStatut.setDateFin(new Date());
+            }
+        }
+
+        //On en crée un nouveau
+        PrStatutProjet newStatut = new PrStatutProjet();
+        newStatut.setProjet(projet);
+        newStatut.setStatutProjet(StatutProjetEnum.valueOf(statut));
+        newStatut.setDateDebut(new Date());
+
+        //On le rattache au projet
+        statuts.add(newStatut);
+
+        statutProjetRepository.save(statuts);
     }
 
 }
