@@ -19,6 +19,13 @@ public class StatutProjetService {
     @Autowired
     private PrStatutProjetRepository statutProjetRepository;
 
+    @Autowired
+    private PublicationService publicationService;
+
+    /**
+     * Initialise le statut d'un projet
+     * @param projet le projet à mettre à jour
+     */
     void init(PrProjet projet) {
 
         if (projet.getStatuts() == null || projet.getStatuts().isEmpty()) {
@@ -59,6 +66,11 @@ public class StatutProjetService {
         statuts.add(newStatut);
 
         statutProjetRepository.save(statuts);
+
+        //Si le projet passe en PUBLIE, alors on lui rattache une publication
+        if (StatutProjetEnum.PUBLIE.equals(statut)) {
+            publicationService.init(projet);
+        }
     }
 
 }

@@ -19,13 +19,27 @@ public class PublicationService {
     private PrPublicationRepository publicationRepository;
 
     public void save(PrPublication publication) {
-
         publicationRepository.save(publication);
     }
 
     public PrPublication getByProjet(PrProjet projet) {
 
         return publicationRepository.findByProjet(projet);
+    }
+
+    /**
+     * Initialise la publication d'un projet si celui-ci n'en a pas
+     * @param projet le projet à mettre à jour
+     */
+    public void init(PrProjet projet) {
+
+        if (projet.getPublication() == null) {
+
+            PrPublication publication = new PrPublication();
+            publication.setProjet(projet);
+
+            publicationRepository.save(publication);
+        }
     }
 
 }
