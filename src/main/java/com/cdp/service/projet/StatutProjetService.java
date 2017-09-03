@@ -66,14 +66,6 @@ public class StatutProjetService {
         statuts.add(newStatut);
 
         statutProjetRepository.save(statuts);
-
-        //Si le projet passe en PUBLIE, alors on lui rattache une publication
-        System.out.println(statut);
-        System.out.println(StatutProjetEnum.PUBLIE);
-        System.out.println(StatutProjetEnum.PUBLIE.equals(statut));
-        if (StatutProjetEnum.PUBLIE.equals(statut)) {
-            publicationService.init(projet);
-        }
     }
 
 }

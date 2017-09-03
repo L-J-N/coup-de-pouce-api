@@ -34,16 +34,18 @@ public class PublicationController {
     public PublicationDto getByProjetId(@RequestParam(value="projet") Long idProjet) {
 
         PublicationDto publicationDto = null;
-
         PrProjet projet = projetService.getById(idProjet);
 
         if (projet != null) {
 
             PrPublication publication = publicationService.getByProjet(projet);
 
-            if (publication != null) {
-                publicationDto = publicationConverter.toDto(publication);
+            //Si le projet n'a pas encore de publication, on lui en initialise une.
+            if (publication == null) {
+                publication = publicationService.init(projet);
             }
+
+            publicationDto = publicationConverter.toDto(publication);
         }
 
         return publicationDto;

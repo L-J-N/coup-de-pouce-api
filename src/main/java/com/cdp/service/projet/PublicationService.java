@@ -31,7 +31,7 @@ public class PublicationService {
      * Initialise la publication d'un projet si celui-ci n'en a pas
      * @param projet le projet à mettre à jour
      */
-    public void init(PrProjet projet) {
+    public PrPublication init(PrProjet projet) {
 
         if (projet.getPublication() == null) {
 
@@ -39,6 +39,10 @@ public class PublicationService {
             publication.setProjet(projet);
 
             publicationRepository.save(publication);
+
+            return publication;
+        } else {
+            return projet.getPublication();
         }
     }
 
