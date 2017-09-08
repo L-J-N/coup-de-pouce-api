@@ -8,11 +8,14 @@ public enum StatutProjetEnum {
     EN_COURS_CREATION,
     CREE,
     REFUSE,
-    En_ATTENTE_RDV,
+    EN_ATTENTE_RDV,
+    EN_ATTENTE_RECTIFICATION,
+    ABANDON,
     EN_ATTENTE_PUBLICATION,
     PUBLIE,
     FINANCE,
-    NON_FINANCE;
+    NON_FINANCE,
+    SUPPRIME;
 
 
     public static StatutProjetEnum toEnum(String statut) throws RuntimeException {

@@ -36,6 +36,7 @@ public class ProjetConverter {
             projetDto.setStatut(projetService.getCurrentStatut(projet));
             projetDto.setTypeProjet(projet.getTypeProjet());
             projetDto.setDescriptionCourte(projet.getDescriptionCourte());
+            projetDto.setCommentaire(projet.getCommentaire());
             projetDto.setSommeDemandee(projet.getSommeDemandee());
             projetDto.setSommeRecolte(projet.getSommeRecolte());
             projetDto.setDelaiRecolte(projet.getDelaiRecolte());
@@ -58,6 +59,7 @@ public class ProjetConverter {
             projet.setCreateur(utilisateurConverter.toEntity(projetDto.getCreateur()));
             projet.setTypeProjet(projetDto.getTypeProjet());
             projet.setDescriptionCourte(projetDto.getDescriptionCourte());
+            projet.setCommentaire(projetDto.getCommentaire());
             projet.setSommeDemandee(projetDto.getSommeDemandee());
             projet.setSommeRecolte(projetDto.getSommeRecolte());
             projet.setDelaiRecolte(projetDto.getDelaiRecolte());
