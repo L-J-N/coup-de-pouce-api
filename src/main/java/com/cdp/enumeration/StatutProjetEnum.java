@@ -14,7 +14,8 @@ public enum StatutProjetEnum {
     EN_ATTENTE_PUBLICATION,
     PUBLIE,
     FINANCE,
-    NON_FINANCE;
+    NON_FINANCE,
+    SUPPRIME;
 
 
     public static StatutProjetEnum toEnum(String statut) throws RuntimeException {

@@ -26,6 +26,8 @@ public class ProjetDto {
 
     private String descriptionCourte;
 
+    private String commentaire;
+
     private Integer sommeDemandee;
 
     private Integer sommeRecolte;
@@ -90,6 +92,14 @@ public class ProjetDto {
 
     public void setDescriptionCourte(String descriptionCourte) {
         this.descriptionCourte = descriptionCourte;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
     }
 
     public Integer getSommeDemandee() {
