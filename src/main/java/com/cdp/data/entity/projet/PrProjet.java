@@ -11,6 +11,8 @@ import java.util.List;
 
 /**
  * Created by jabuf on 22/02/17.
+ *
+ * L'entité projet.
  */
 @Entity
 public class PrProjet {
