@@ -47,6 +47,8 @@ public class PrProjet {
     @OneToOne
     private Adresse adresse;
 
+    private String commentaire;
+
     @OneToOne(mappedBy = "projet")
     private PrPublication publication;
 
@@ -136,6 +138,14 @@ public class PrProjet {
 
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
     }
 
     public PrPublication getPublication() {

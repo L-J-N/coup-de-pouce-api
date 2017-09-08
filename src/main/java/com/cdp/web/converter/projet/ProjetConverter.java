@@ -39,6 +39,7 @@ public class ProjetConverter {
             projetDto.setSommeDemandee(projet.getSommeDemandee());
             projetDto.setSommeRecolte(projet.getSommeRecolte());
             projetDto.setDelaiRecolte(projet.getDelaiRecolte());
+            projetDto.setCommentaire(projet.getCommentaire());
             projetDto.setAdresse(adresseConverter.toDto(projet.getAdresse()));
         }
 
@@ -61,6 +62,7 @@ public class ProjetConverter {
             projet.setSommeDemandee(projetDto.getSommeDemandee());
             projet.setSommeRecolte(projetDto.getSommeRecolte());
             projet.setDelaiRecolte(projetDto.getDelaiRecolte());
+            projet.setCommentaire(projetDto.getCommentaire());
             projet.setAdresse(adresseConverter.toEntity(projetDto.getAdresse()));
         }
 

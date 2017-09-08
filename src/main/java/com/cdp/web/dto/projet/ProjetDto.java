@@ -34,6 +34,8 @@ public class ProjetDto {
 
     private AdresseDto adresse;
 
+    private String commentaire;
+
     public Long getId() {
         return id;
     }
@@ -120,5 +122,13 @@ public class ProjetDto {
 
     public void setAdresse(AdresseDto adresse) {
         this.adresse = adresse;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
     }
 }
